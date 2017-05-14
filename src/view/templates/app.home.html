@@ -1,5 +1,5 @@
 
-<section id="banner" *ngFor="let slogan of home">
+<section id="banner" *ngFor="let slogan of sites">
 	<div class="wrap">
 		<div class="banner-text" *ngIf="slogan.slogan1 || slogan.slogan2">
             <h2 *ngIf="slogan.slogan1">{{slogan.slogan1}}</h2>
@@ -7,7 +7,26 @@
         </div>
 
 		<div class="banner-form">
-
+			<div role="form" class="wpcf7" id="wpcf7-f37-p2-o2" lang="en-US" dir="ltr">
+				<div class="screen-reader-response"></div>
+				<form action="/wp_painters_submitted/?now=2017-05-13-03%3A47%3A10#wpcf7-f37-p2-o2" method="post" class="wpcf7-form" novalidate="novalidate">
+					<h2 class="form-title">Get A Free Estimate</h2>
+					<div class="input-field">
+						<span class="wpcf7-form-control-wrap fullname"><input type="text" name="fullname" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Full Name"></span>
+					</div>
+					<div class="input-field">
+						<span class="wpcf7-form-control-wrap emailaddress"><input type="email" name="emailaddress" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email Address"></span>
+					</div>
+					<div class="input-field">
+						<span class="wpcf7-form-control-wrap phonenumber"><input type="text" name="phonenumber" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Phone Number"></span>
+					</div>
+					<div class="textarea-field">
+						<span class="wpcf7-form-control-wrap message"><textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Message"></textarea></span>
+					</div>
+					<div class="btn-submit"><input type="submit" value="Submit" class="wpcf7-form-control wpcf7-submit"><span class="ajax-loader"></span></div>
+					<div class="wpcf7-response-output wpcf7-display-none"></div>
+				</form>
+			</div>
         </div>
 
 		<div class="clear"></div>
@@ -19,68 +38,53 @@
 	</video>
 </section>
 
-<?php if(have_posts()): ?>
 <main>
 	<div class="wrap">
-	<?php while(have_posts()): the_post(); ?>
 		<div class="home-content">
-			<?php if(!empty(get_the_content())): ?>
-			<article class="left-content">
-				<?php the_content(); ?>
+			<article class="{{homeContent.class}}" *ngFor="let homeContent of homeContents">
+				<h2 class="content-title">{{homeContent.title}}</h2>
+				<p><strong>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</strong></p>
+				<p>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+				<p>Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam.</p>
 			</article>
-			<?php endif; ?>
-			<?php if(!empty(get_field('why_choose_us'))): ?>
-			<aside class="right-content">
-				<?= the_field('why_choose_us'); ?>
-			</aside>
-			<?php endif; ?>
 		</div>
 		<div class="clear"></div>
-	<?php endwhile; ?>
 	</div>
 </main>
-<?php endif; ?>
 
-<?php if(post_type_exists('services')): ?>
-<?php
-// get 2 services
-$services = new WP_Query([
-	'post_type' => 'services',
-	'post_per_page' => '2',
-	'order' => 'asc'
-]);
-?>
 <section id="services">
 	<div class="wrap">
 		<div class="boxes">
-			<?php
-			if($services->have_posts()):
-				while($services->have_posts()): $services->the_post(); ?>
 			<div class="box box-white box-1">
-				<?php if(has_post_thumbnail()): ?>
-				<figure class="box-img"><?= the_post_thumbnail('400','250'); ?></figure>
-				<?php endif; ?>
+				<figure class="box-img"><img src="/view/images/img-1.jpg" class="" alt=""></figure>
 				<div class="box-text">
-					<h2 class="box-title"><?= the_title(); ?></h2>
-					<?= substr(get_the_excerpt(), 0, 60).'...'; ?>
-					<div class="read-more"><a href="<?= the_permalink(); ?>"><img src="/view/images/icon-arrow.png" alt="" /></a></div>
+					<h2 class="box-title">Exterior Painting</h2>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit, se...					<div class="read-more"><a href=""><img src="/view/images/icon-arrow.png" alt=""></a></div>
 				</div>
 			</div>
-			<?php endwhile; endif; ?>
 
-			<?php if(have_posts()): ?>
-			<?php while(have_posts()): the_post(); ?>
-			<?php if(!empty(get_field('more_services'))): ?>
-			<div class="box box-3">
-				<?= the_field('more_services'); ?>
-				<?php if(!empty(get_field('button_link')) && !empty(get_field('button_title'))): ?>
-					<div class="btn-call-action"><a href="<?= the_field('button_link') ?>"><?= the_field('button_title') ?></a></div>
-				<?php endif; ?>
+			<div class="box box-white box-2">
+				<figure class="box-img"><img src="/view/images/img-2.jpg" class="" alt=""></figure>
+				<div class="box-text">
+					<h2 class="box-title">Interior Painting</h2>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit, se...					<div class="read-more"><a href=""><img src="/view/images/icon-arrow.png" alt=""></a></div>
+				</div>
 			</div>
-			<?php endif; endwhile; endif; ?>
+
+			<div class="box box-3">
+				<h2 class="box-title-big">More Services</h2>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.</p>
+				<ul>
+				<li>Ut wisi enim ad minim veniam</li>
+				<li>Quis nostrud exerci tation</li>
+				<li>Ullamcorper suscipit lobortis</li>
+				<li>Nisl ut aliquip ex ea commodo</li>
+				<li>Consequat duis autem vel eum</li>
+				</ul>
+				<div class="btn-call-action"><a href="">Contact Us Now!</a></div>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 	</div>
 </section>
-<?php endif; ?>

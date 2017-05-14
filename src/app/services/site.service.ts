@@ -14,4 +14,8 @@ export class SiteService{
         return this.http.get('/view/data/site.json')
             .map(res => res.json());
     }
+    getHome(){
+        return this.http.get('/view/data/home.json')
+            .map(res => res.json());
+    }
 }
