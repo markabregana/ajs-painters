@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Http} from '@angular/http';
 
 // get site json
 import { SiteService } from '../services/site.service';
@@ -11,22 +10,22 @@ import { SiteService } from '../services/site.service';
     templateUrl: '/view/templates/app.aboutus.html',
     providers: [SiteService]
 })
-export class AppAboutUs  {
+export class AppAboutUs {
     sites: Sites[];
-    constructor(private headerService: SiteService){
+    constructor(private headerService: SiteService) {
         this.headerService.getHeader().subscribe(sites => {
             this.sites = sites;
         });
     }
 }
 
-interface Sites{
+interface Sites {
     name: string;
     email: string;
     phone: string;
     menus: Menus[];
 }
-interface Menus{
+interface Menus {
     id: number;
     url: string;
     title: string;
